@@ -75,7 +75,6 @@ npx playwright test tests/api
 
 #🧾 Task 3: Manual Test Design – Checkout & Payment Module
 🛒  System: E-commerce Checkout Flow (Generic)
-🧪  Test Design (15–20 Test Cases)
 
 🔹 1. User Login & Logout 
 TC01 – Successful login with valid credentials
@@ -262,3 +261,139 @@ Sorting improves product discoverability and user experience but does not comple
 
 ---
 
+🧾 Test Strategy Document
+🛒 Task 3: Manual Test Design – Checkout & Payment Module
+
+System: E-commerce Checkout Flow (SauceDemo)
+URL: https://www.saucedemo.com/
+
+1. 🎯 Objective
+
+The objective of this test strategy is to validate the end-to-end checkout and payment flow of the SauceDemo e-commerce application, ensuring:
+
+Functional correctness of checkout process
+Data integrity across cart → checkout → confirmation
+Proper validation of user inputs
+Accurate price calculation (subtotal, tax, total)
+Reliable UI behavior across critical user journeys
+Identification of defects through exploratory testing
+
+2. 🧪 Scope
+✅ In Scope
+Login / Logout functionality
+Product listing page (Inventory)
+Cart management
+Checkout process (Step One & Step Two)
+Order confirmation page
+Sorting & filtering
+Price calculation logic
+Input validation
+❌ Out of Scope
+Backend API implementation
+Performance / Load testing
+Payment gateway integration (mocked system)
+Cross-browser compatibility deep testing (only sanity-level assumed)
+
+3. 🧰 Test Approach
+3.1 Manual Functional Testing
+Validate all user flows from login → checkout completion
+Verify UI behavior and error messages
+Confirm business logic (price calculation, cart updates)
+3.2 Positive Testing
+Valid user login
+Successful checkout flow
+Correct product selection and order placement
+3.3 Negative Testing
+Invalid login credentials
+Missing checkout fields
+Invalid or special character inputs
+Locked user scenarios
+3.4 Boundary Testing
+Long text inputs (e.g., 1000 characters)
+Empty fields validation
+Maximum cart operations
+3.5 Exploratory Testing
+Ad-hoc navigation across product and cart flows
+Behavior testing using edge user accounts (e.g. problem_user)
+UI inconsistency checks
+
+4. 📊 Test Design Coverage
+
+Total Test Cases: 37
+Coverage Breakdown:
+Module	Coverage
+Login / Authentication	TC01–TC08
+Product Listing & Cart	TC09–TC20
+Checkout Information	TC21–TC26
+Checkout Overview	TC27–TC34
+Order Completion	TC35–TC37
+
+5. 🧪 Test Environment
+Application: SauceDemo
+Browser: Chrome (latest)
+OS: macOS
+Test Type: Manual Functional Testing
+Test Data:
+standard_user
+problem_user
+locked_out_user
+
+6. ⚠️ Risk Analysis
+Risk	Impact
+Incorrect price calculation	High
+Cart failure (add/remove)	Critical
+Login failure	High
+Sorting malfunction	Medium
+UI inconsistency	Low–Medium
+
+7. 🐞 Defect Management Approach
+
+All defects are documented in JIRA-style format with:
+
+Title
+Steps to reproduce
+Actual vs Expected result
+Severity & Priority
+Evidence (screenshots)
+Business impact reasoning
+
+8. 🔥 Key Assumptions
+SauceDemo is a demo application (not production)
+Payment gateway is simulated (no real transaction)
+Data resets between sessions
+Some users (e.g. problem_user) may contain intentional defects
+
+9. 🐞 Exploratory Testing Summary
+
+During exploratory testing, the following issues were identified:
+
+Issue 1: Login Validation UX is unclear
+Generic error message
+No field-level validation highlight
+Issue 2: Add to Cart inconsistency (problem_user)
+Cart badge not updated consistently
+Some products fail to add
+Issue 3: Sorting malfunction (problem_user)
+Sorting does not reflect selected filter
+UI order remains unchanged
+
+10. 📌 Conclusion
+
+The SauceDemo checkout module demonstrates strong basic workflow coverage but contains multiple UX and functional inconsistencies under edge user scenarios.
+
+Key focus areas for improvement:
+
+Cart reliability
+Sorting logic correctness
+Improved validation UX
+Better user feedback mechanisms
+
+11. 🚀 Deliverables (GitHub Portfolio Ready)
+
+This project includes:
+
+✅ Manual Test Cases (37 cases)
+✅ Test Strategy Document (this file)
+✅ Bug Reports (JIRA-style)
+✅ Exploratory Testing Evidence (screenshots)
+✅ API & Automation Scripts (Playwright + GoRest)
